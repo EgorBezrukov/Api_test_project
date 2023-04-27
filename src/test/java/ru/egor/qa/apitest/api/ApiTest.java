@@ -1,13 +1,14 @@
 package ru.egor.qa.apitest.api;
 
 import io.qameta.allure.Description;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class ApiTest {
+public class ApiTest extends BeforeTest{
 
     private final String reqResBaseUrl = "https://reqres.in/";
     private final String listUsers = "api/users?page=2";
@@ -15,7 +16,7 @@ public class ApiTest {
     private final Utils as = new Utils();
 
     @Test
-    @Description("роверка статус-кода ответа")
+    @Description("Проверка статус-кода ответа")
     public void testStatusCode() {
         Response response = as.getResponse(reqResBaseUrl, listUsers);
         as.checkStatusCode(response,200);
